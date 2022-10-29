@@ -176,7 +176,7 @@ def test_code():
             print("user log-in verified")
 
         else:
-            print("Username is not founr, please try again")
+            print("Username is not found, please try again")
     else:
         print("user record does not match, please try again")
 
