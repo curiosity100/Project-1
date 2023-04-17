@@ -12,3 +12,4 @@ enabled
 7. Verify the user is created
 8. Log out from application
 9. Re Login to application using the above created user
+10.Delete the created user
