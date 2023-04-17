@@ -12,16 +12,16 @@ import time
 
 # to create a account for user with login account
 # USER DETAILS
-# name ="mathew conway", ID =1230, job ="software engineer", role="professional", sub-unit="Adminstratio", location="HQ - CA, USA, jobtype="freelance"
+# name ="mathew conway", ID =1230, job ="software engineer", role="professional", sub-unit="Adminstration", location="HQ - CA, USA, jobtype="freelance"
 
-def test_code():
+def test_code_1():
     service = Service(executable_path=GeckoDriverManager().install())
     driver = webdriver.Firefox(service=service)
     url = "https://opensource-demo.orangehrmlive.com/"
     driver.get(url)
 
     # Login
-    WebDriverWait(driver, 10).until(ec.presence_of_element_located((By.XPATH, "//input[@placeholder='Username']")))
+    WebDriverWait(driver, 30).until(ec.presence_of_element_located((By.XPATH, "//input[@placeholder='Username']")))
     driver.find_element(By.XPATH, "//input[@placeholder='Username']").send_keys("Admin")
     driver.find_element(By.XPATH, "// input[@placeholder='Password']").send_keys("admin123")
     driver.find_element(By.XPATH, "//button[@type='submit']").click()
@@ -158,7 +158,7 @@ def test_code():
     total_record = driver.find_element(By.XPATH,"//div[@class='orangehrm-background-container']/div[2]/div[2]/div/span")
     if total_record.text == "(1) Record Found":
         username = driver.find_element(By.XPATH, "//div[@class='orangehrm-container']/div/div[2]/div/div/div[2]")
-        employeename =driver.find_element(By.XPATH, "//div[@class='orangehrm-container']/div/div[2]/div/div/div[4]")
+        employeename = driver.find_element(By.XPATH, "//div[@class='orangehrm-container']/div/div[2]/div/div/div[4]")
         if username.text == "mathew" and employeename.text == "mathew conway":
             print("user is created and it is verified")
             driver.execute_script("arguments[0].scrollIntoView()", employeename)
@@ -179,9 +179,41 @@ def test_code():
             print("Username is not found, please try again")
     else:
         print("user record does not match, please try again")
-        
 
 
+#after successful completion (to delete the user)
+def test_code_2():
+    service = Service(executable_path=GeckoDriverManager().install())
+    driver = webdriver.Firefox(service=service)
+    url = "https://opensource-demo.orangehrmlive.com/"
+    driver.get(url)
 
+    # Login
+    WebDriverWait(driver, 10).until(ec.presence_of_element_located((By.XPATH, "//input[@placeholder='Username']")))
+    driver.find_element(By.XPATH, "//input[@placeholder='Username']").send_keys("Admin")
+    driver.find_element(By.XPATH, "// input[@placeholder='Password']").send_keys("admin123")
+    driver.find_element(By.XPATH, "//button[@type='submit']").click()
+    time.sleep(3)
 
-
+    # to get employee details screenshot
+    driver.find_element(By.LINK_TEXT, "PIM").click()
+    time.sleep(3)
+    # emp id
+    driver.find_element(By.XPATH, "//form/div[1]/div/div[2]/div/div[2]/input").send_keys(1230)
+    time.sleep(3)
+    # to click search
+    driver.find_element(By.XPATH, "//button[@type='submit']").click()
+    time.sleep(5)
+    # to delete employee details
+    employee_details = driver.find_element(By.XPATH, "//div[@class='orangehrm-container']")
+    driver.execute_script("arguments[0].scrollIntoView()", employee_details)
+    time.sleep(3)
+    driver.find_element(By.XPATH, "//div[@data-v-9971f952='' and @data-v-77b08b9a='']/div[9]/div/button[1]").click()
+    driver.find_element(By.XPATH, "//div[@class='oxd-dialog-container-default--inner']/div/div[3]/button[2]").click()
+    time.sleep(8)
+    # to verify
+    total_record = driver.find_element(By.XPATH,"//div[@class='orangehrm-background-container']/div[2]/div[2]/div/span")
+    if total_record.text == "No Records Found":
+        print("Employee details deleted successfully")
+    else:
+        print("Employee details not deleted,Please verify")
