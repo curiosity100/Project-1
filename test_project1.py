@@ -19,6 +19,7 @@ def test_code_1():
     driver = webdriver.Firefox(service=service)
     url = "https://opensource-demo.orangehrmlive.com/"
     driver.get(url)
+    driver.maximize_window()
 
     # Login
     WebDriverWait(driver, 30).until(ec.presence_of_element_located((By.XPATH, "//input[@placeholder='Username']")))
@@ -187,6 +188,7 @@ def test_code_2():
     driver = webdriver.Firefox(service=service)
     url = "https://opensource-demo.orangehrmlive.com/"
     driver.get(url)
+    driver.maximize_window()
 
     # Login
     WebDriverWait(driver, 10).until(ec.presence_of_element_located((By.XPATH, "//input[@placeholder='Username']")))
@@ -217,5 +219,3 @@ def test_code_2():
         print("Employee details deleted successfully")
     else:
         print("Employee details not deleted,Please verify")
-        
-
