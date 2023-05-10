@@ -1,13 +1,13 @@
 import sys
-import pytest
+import time
 from selenium import webdriver
-from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
-import time
+from webdriver_manager.firefox import GeckoDriverManager
+
 
 
 # to create a account for user with login account
@@ -64,7 +64,7 @@ def test_code_1():
     driver.find_element(By.XPATH, "//*[contains(text(), 'Administration')]").click()
     # to select location
     driver.find_element(By.XPATH, "//form/div[1]/div/div[6]/div/div[2]/div/div/div[1]").click()
-    driver.find_element(By.XPATH, "//*[contains(text(), 'HQ - CA, USA')]").click()
+    driver.find_element(By.XPATH, "//*[contains(text(), 'Texas R&D')]").click()
     # to select job type
     driver.find_element(By.XPATH, "//form/div[1]/div/div[7]/div/div[2]/div/div/div[1]").click()
     driver.find_element(By.XPATH, "//*[contains(text(), 'Freelance')]").click()
@@ -210,7 +210,7 @@ def test_code_2():
     employee_details = driver.find_element(By.XPATH, "//div[@class='orangehrm-container']")
     driver.execute_script("arguments[0].scrollIntoView()", employee_details)
     time.sleep(3)
-    driver.find_element(By.XPATH, "//div[@data-v-9971f952='' and @data-v-77b08b9a='']/div[9]/div/button[1]").click()
+    driver.find_element(By.XPATH, "//div[@data-v-0d5ef602='' and @data-v-f2168256='']/div[9]/div/button[1]").click()
     driver.find_element(By.XPATH, "//div[@class='oxd-dialog-container-default--inner']/div/div[3]/button[2]").click()
     time.sleep(8)
     # to verify
