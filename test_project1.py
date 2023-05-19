@@ -52,9 +52,6 @@ def test_code_1():
     # to add job details
     driver.find_element(By.LINK_TEXT, "Job").click()
     time.sleep(3)
-    # to select software engineer
-    driver.find_element(By.XPATH, "//form/div[1]/div/div[2]/div/div[2]/div/div").click()
-    driver.find_element(By.XPATH, ("//*[contains(text(), 'Software Engineer')]")).click()
 
     # to select professional
     driver.find_element(By.XPATH, "//form/div[1]/div/div[4]/div/div[2]/div/div/div[1]").click()
